@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @font-face {
+      font-family: 'Great Vibes';
+      src: url('../editable/assets/GreatVibes.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cinzel';
+      src: url('../editable/assets/Cinzel.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Rozha One';
+      src: url('../editable/assets/RozhaOne.ttf') format('truetype');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      width: 600px;
+      height: 600px;
+      overflow: hidden;
+      background: #f7f2ea;
+      font-family: 'Cinzel', serif;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px 18px 24px;
+      text-align: center;
+    }
+
+    .bg-texture {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #faf6f0 0%, #f3ece0 70%, #ebdcc9 100%);
+      z-index: 1;
+    }
+
+    .outer-border {
+      position: absolute;
+      inset: 12px;
+      border: 1.5px solid #c6a664;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .inner-border {
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(198, 166, 100, 0.5);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .corner {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #c6a664;
+      transform: rotate(45deg);
+      z-index: 3;
+    }
+    .c-tl { top: 13px; left: 13px; }
+    .c-tr { top: 13px; right: 13px; }
+    .c-bl { bottom: 13px; left: 13px; }
+    .c-br { bottom: 13px; right: 13px; }
+
+    .header-area {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2px;
+    }
+
+    .shloka {
+      font-family: 'Rozha One', serif;
+      font-size: 21px;
+      color: #8b1e1e;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .invitation-badge {
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #9e7d3b;
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 68px;
+      line-height: 1.02;
+      color: #1a1814;
+      margin: 1px 0;
+    }
+
+    .names span.amp {
+      font-size: 48px;
+      color: #9e7d3b;
+      margin: 0 6px;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .full-names {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: #4a3e31;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    .couple-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 330px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -6px;
+      margin-bottom: -4px;
+    }
+
+    .couple-img {
+      height: 320px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 22px rgba(60, 45, 30, 0.2));
+      mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
+    }
+
+    .footer-area {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .date-venue {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #8b1e1e;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .hashtag {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: #8f6527;
+      text-transform: uppercase;
+      padding: 3px 14px;
+      border-radius: 9999px;
+      border: 1px solid #c6a664;
+      background: rgba(255, 255, 255, 0.7);
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-texture"></div>
+  <div class="outer-border"></div>
+  <div class="inner-border"></div>
+  <div class="corner c-tl"></div>
+  <div class="corner c-tr"></div>
+  <div class="corner c-bl"></div>
+  <div class="corner c-br"></div>
+
+  <div class="header-area">
+    <div class="shloka">॥ ॐ श्री गणेशाय नमः ॥</div>
+    <div class="invitation-badge">WEDDING INVITATION</div>
+    <div class="names">
+      Durgesh<span class="amp">&</span>Tripti
+    </div>
+    <div class="full-names">
+      Durgesh Pratap Singh &nbsp;·&nbsp; Tripti Singh
+    </div>
+  </div>
+
+  <div class="couple-container">
+    <img src="../editable/assets/layer-couple.png" class="couple-img" alt="Durgesh and Tripti">
+  </div>
+
+  <div class="footer-area">
+    <div class="date-venue">
+      17 Oct & 2-3 Dec 2026 &nbsp;•&nbsp; Awadh Castle & Hotel Holiday Heights
+    </div>
+    <div class="hashtag">
+      #DurgeshWedsTripti · Open Invitation
+    </div>
+  </div>
+</body>
+</html>

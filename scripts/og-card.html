@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @font-face {
+      font-family: 'Great Vibes';
+      src: url('../editable/assets/GreatVibes.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cinzel';
+      src: url('../editable/assets/Cinzel.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Rozha One';
+      src: url('../editable/assets/RozhaOne.ttf') format('truetype');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #f7f2ea;
+      font-family: 'Cinzel', serif;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 36px 48px;
+    }
+
+    /* Luxury Parchment Vignette & Texture */
+    .bg-texture {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 60% 50%, #faf6f0 0%, #f3ece0 70%, #ebdcc9 100%);
+      z-index: 1;
+    }
+
+    /* Dual Ornate Gold Borders */
+    .outer-border {
+      position: absolute;
+      inset: 16px;
+      border: 2px solid #c6a664;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .inner-border {
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(198, 166, 100, 0.6);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Corner Diamonds */
+    .corner {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #c6a664;
+      transform: rotate(45deg);
+      z-index: 3;
+    }
+    .c-tl { top: 18px; left: 18px; }
+    .c-tr { top: 18px; right: 18px; }
+    .c-bl { bottom: 18px; left: 18px; }
+    .c-br { bottom: 18px; right: 18px; }
+
+    /* Left Side: Couple Art */
+    .couple-container {
+      position: relative;
+      z-index: 10;
+      width: 380px;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+    }
+
+    .couple-img {
+      max-height: 520px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(60, 45, 30, 0.15));
+      mask-image: linear-gradient(to top, transparent 0%, black 15%, black 100%);
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 12%, black 100%);
+    }
+
+    /* Right Side: Typography & Details */
+    .details-container {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-col: column;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-left: 20px;
+      padding-right: 16px;
+    }
+
+    .shloka {
+      font-family: 'Rozha One', serif;
+      font-size: 26px;
+      color: #8b1e1e;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .invitation-badge {
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #9e7d3b;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 140px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c6a664, transparent);
+      margin: 4px 0 10px 0;
+      position: relative;
+    }
+
+    .divider::after {
+      content: '◆';
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #c6a664;
+      font-size: 9px;
+    }
+
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 90px;
+      line-height: 1.02;
+      color: #1a1814;
+      margin: 4px 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .names span.amp {
+      font-size: 65px;
+      color: #9e7d3b;
+      margin: 0 10px;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .full-names {
+      font-size: 16px;
+      letter-spacing: 0.22em;
+      color: #4a3e31;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .events-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .event-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .event-tag {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #8b1e1e;
+      text-transform: uppercase;
+    }
+
+    .event-dot {
+      color: #c6a664;
+      font-size: 10px;
+    }
+
+    .event-detail {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      color: #5c4e3f;
+      font-style: italic;
+    }
+
+    .venue-summary {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: #6e6050;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .bottom-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 20px;
+      border-radius: 9999px;
+      border: 1px solid #c6a664;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 4px 12px rgba(60, 45, 30, 0.05);
+    }
+
+    .bottom-pill span {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #8f6527;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-texture"></div>
+  <div class="outer-border"></div>
+  <div class="inner-border"></div>
+  <div class="corner c-tl"></div>
+  <div class="corner c-tr"></div>
+  <div class="corner c-bl"></div>
+  <div class="corner c-br"></div>
+
+  <!-- Left: Couple Art -->
+  <div class="couple-container">
+    <img src="../editable/assets/layer-couple.png" class="couple-img" alt="Durgesh and Tripti">
+  </div>
+
+  <!-- Right: Ceremony Info (Groom First!) -->
+  <div class="details-container">
+    <div class="shloka">॥ ॐ श्री गणेशाय नमः ॥</div>
+    <div class="invitation-badge">W E D D I N G &nbsp; I N V I T A T I O N</div>
+    <div class="divider"></div>
+
+    <div class="names">
+      Durgesh<span class="amp">&</span>Tripti
+    </div>
+
+    <div class="full-names">
+      Durgesh Pratap Singh &nbsp;·&nbsp; Tripti Singh
+    </div>
+
+    <div class="events-grid">
+      <div class="event-row">
+        <span class="event-tag">Ring Ceremony</span>
+        <span class="event-dot">◆</span>
+        <span class="event-detail">17 October 2026 · 11:00 AM onwards</span>
+      </div>
+      <div class="event-row">
+        <span class="event-tag">Haldi & Sangeet</span>
+        <span class="event-dot">◆</span>
+        <span class="event-detail">2 December 2026 · 1:00 PM & 7:00 PM</span>
+      </div>
+      <div class="event-row">
+        <span class="event-tag">Shubh Vivah</span>
+        <span class="event-dot">◆</span>
+        <span class="event-detail">3 December 2026 · 7:00 PM onwards</span>
+      </div>
+    </div>
+
+    <div class="venue-summary">
+      Awadh Castle &nbsp;•&nbsp; Hotel Holiday Heights
+    </div>
+
+    <div class="bottom-pill">
+      <span>#DurgeshWedsTripti &nbsp;·&nbsp; Tap to Open Digital Invitation</span>
+    </div>
+  </div>
+</body>
+</html>
