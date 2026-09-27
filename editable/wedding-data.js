@@ -1,18 +1,18 @@
 /**
  * wedding-data.js — Customer-facing editable data layer for ivory-waltz
- * Personalised for Durgesh Pratap Singh & Tripti Singh (Groom First)
+ * Personalised for Tripti Singh & Durgesh Pratap Singh (Tripti First)
  */
 
 window.WEDDING_DATA = {
   couple: {
-    groom: "Durgesh",
     bride: "Tripti",
-    groomFull: "Durgesh Pratap Singh",
+    groom: "Durgesh",
     brideFull: "Tripti Singh",
-    groomParents: "Together with their cherished families",
+    groomFull: "Durgesh Pratap Singh",
     brideParents: "With the loving blessings of family and elders",
-    hashtag: "#DurgeshWedsTripti",
-    monogram: "D · T",
+    groomParents: "Together with their cherished families",
+    hashtag: "#TriptiWedsDurgesh",
+    monogram: "T · D",
     familySign: "With love & blessings, the Singh families",
   },
 
@@ -26,24 +26,11 @@ window.WEDDING_DATA = {
     sanskrit: "॥ ॐ श्री गणेशाय नमः ॥",
     shloka: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥",
     arabic: "॥ ॐ श्री गणेशाय नमः ॥", // fallback for backward compatibility
-    text: "With joy in our hearts and the blessings of our families, we invite you to celebrate the wedding ceremonies of Durgesh & Tripti as we begin our forever together.",
+    text: "With joy in our hearts and the blessings of our families, we invite you to celebrate the wedding ceremonies of Tripti & Durgesh as we begin our forever together.",
   },
 
-  // Chronological order of all wedding functions/events
+  // Chronological order of all wedding functions/events (Wedding only - Engagement removed as requested)
   events: [
-    {
-      id: "engagement",
-      name: "Engagement",
-      category: "Ring Ceremony",
-      date: "Saturday, 17th October 2026",
-      dayLabel: "Saturday",
-      dayNum: "17",
-      monthLabel: "October 2026",
-      time: "11:00 AM onwards",
-      venue: "Hotel Holiday Heights",
-      mapsUrl: "https://maps.app.goo.gl/QkwJTDuG6zYTm3Wd8?g_st=ic",
-      note: "An auspicious celebration marking the joyful beginning of our journey together.",
-    },
     {
       id: "haldi",
       name: "Haldi",
@@ -86,28 +73,18 @@ window.WEDDING_DATA = {
   ],
 
   program: [
-    { name: "Engagement Ceremony", time: "17 Oct · 11:00 AM", venue: "Hotel Holiday Heights" },
     { name: "Haldi Ceremony", time: "02 Dec · 1:00 PM", venue: "Awadh Castle" },
     { name: "Sangeet Night", time: "02 Dec · 7:00 PM", venue: "Awadh Castle" },
     { name: "Baraat & Reception", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" },
     { name: "Sacred Pheras & Vows", time: "03 Dec · 10:00 PM", venue: "Awadh Castle" },
   ],
 
-  // Multiple venues with verified working Google Maps links
+  // Wedding venue with verified working Google Maps link
   venues: [
-    {
-      id: "holiday-heights",
-      name: "Hotel Holiday Heights",
-      role: "Engagement Venue",
-      events: "Engagement Ceremony • 17 October 2026 (11:00 AM onwards)",
-      mapsUrl: "https://maps.app.goo.gl/QkwJTDuG6zYTm3Wd8?g_st=ic",
-      mapsQuery: "Hotel Holiday Heights",
-      mapsEmbed: "https://maps.google.com/maps?q=Hotel+Holiday+Heights&output=embed",
-    },
     {
       id: "awadh-castle",
       name: "Awadh Castle",
-      role: "Wedding Functions Venue",
+      role: "Wedding Venue",
       events: "Haldi & Sangeet (2 Dec) • Wedding Ceremony (3 Dec)",
       mapsUrl: "https://maps.app.goo.gl/4cXmFXDzBceqM5ZH9?g_st=ic",
       mapsQuery: "Awadh Castle",
@@ -117,7 +94,7 @@ window.WEDDING_DATA = {
 
   venue: {
     name: "Awadh Castle",
-    address: "Awadh Castle (Haldi, Sangeet & Wedding) • Hotel Holiday Heights (Engagement)",
+    address: "Awadh Castle (Haldi, Sangeet & Wedding)",
     mapsQuery: "Awadh Castle",
     mapsUrl: "https://maps.app.goo.gl/4cXmFXDzBceqM5ZH9?g_st=ic",
   },
@@ -130,10 +107,19 @@ window.WEDDING_DATA = {
     autoplayOnOpen: true,
   },
 
+  rsvp: {
+    enabled: true,
+    title: "RSVP",
+    subtitle: "We would be honoured by your presence",
+    note: "Kindly confirm your presence to help us prepare for your arrival.",
+    whatsappNumber: "+91 77381 06700",
+    whatsappQuery: "Hi Tripti & Durgesh, I will be attending your wedding celebrations!",
+  },
+
   photos: [
     {
       src: "./editable/assets/couple-photo.jpg",
-      caption: "Durgesh & Tripti",
+      caption: "Tripti & Durgesh",
       subtitle: "Two hearts, one soul, starting our forever together",
     },
   ],
@@ -144,10 +130,12 @@ window.WEDDING_DATA = {
     photos: true,
     music: true,
     countdown: true,
+    rsvp: true,
   },
 
   images: {
-    couple: "./editable/assets/layer-couple.png",
+    couple: "./editable/assets/couple-hero-circle.png",
+    coupleCutout: "./editable/assets/couple-cutout-full.png",
     background: "./editable/assets/layer-01-background.png",
     shadows: "./editable/assets/layer-02-shadows.png",
     groom: "./editable/assets/layer-03-groom.png",

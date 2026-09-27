@@ -86,7 +86,7 @@
     .shloka {
       font-family: 'Rozha One', serif;
       font-size: 21px;
-      color: #8b1e1e;
+      color: #9c6530;
       letter-spacing: 0.05em;
       margin-bottom: 2px;
     }
@@ -104,13 +104,13 @@
       font-family: 'Great Vibes', cursive;
       font-size: 68px;
       line-height: 1.02;
-      color: #1a1814;
+      color: #9c6530;
       margin: 1px 0;
     }
 
     .names span.amp {
       font-size: 48px;
-      color: #9e7d3b;
+      color: #b58c58;
       margin: 0 6px;
       font-family: 'Great Vibes', cursive;
     }
@@ -128,21 +128,31 @@
       position: relative;
       z-index: 10;
       width: 100%;
-      height: 330px;
+      height: 310px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: -6px;
+      margin-top: -4px;
       margin-bottom: -4px;
     }
 
+    .couple-circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 3px solid #c6a664;
+      box-shadow: 0 12px 28px rgba(60, 45, 30, 0.18);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(243,237,227,0.4) 100%);
+    }
+
     .couple-img {
-      height: 320px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 22px rgba(60, 45, 30, 0.2));
-      mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
-      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .footer-area {
@@ -155,9 +165,9 @@
     }
 
     .date-venue {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.15em;
-      color: #8b1e1e;
+      color: #9c6530;
       text-transform: uppercase;
       font-weight: 600;
     }
@@ -188,23 +198,25 @@
     <div class="shloka">॥ ॐ श्री गणेशाय नमः ॥</div>
     <div class="invitation-badge">WEDDING INVITATION</div>
     <div class="names">
-      Durgesh<span class="amp">&</span>Tripti
+      Tripti<span class="amp">&</span>Durgesh
     </div>
     <div class="full-names">
-      Durgesh Pratap Singh &nbsp;·&nbsp; Tripti Singh
+      Tripti Singh &nbsp;·&nbsp; Durgesh Pratap Singh
     </div>
   </div>
 
   <div class="couple-container">
-    <img src="../editable/assets/layer-couple.png" class="couple-img" alt="Durgesh and Tripti">
+    <div class="couple-circle">
+      <img src="../editable/assets/couple-hero-circle.png" class="couple-img" alt="Tripti and Durgesh">
+    </div>
   </div>
 
   <div class="footer-area">
     <div class="date-venue">
-      17 Oct & 2-3 Dec 2026 &nbsp;•&nbsp; Awadh Castle & Hotel Holiday Heights
+      2-3 Dec 2026 &nbsp;•&nbsp; Awadh Castle
     </div>
     <div class="hashtag">
-      #DurgeshWedsTripti · Open Invitation
+      #TriptiWedsDurgesh · Open Invitation
     </div>
   </div>
 </body>

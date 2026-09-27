@@ -79,21 +79,31 @@
     .couple-container {
       position: relative;
       z-index: 10;
-      width: 380px;
+      width: 400px;
       height: 100%;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       padding-bottom: 8px;
     }
 
+    .couple-circle {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 3px solid #c6a664;
+      box-shadow: 0 16px 36px rgba(60, 45, 30, 0.18);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(243,237,227,0.4) 100%);
+    }
+
     .couple-img {
-      max-height: 520px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 15px 25px rgba(60, 45, 30, 0.15));
-      mask-image: linear-gradient(to top, transparent 0%, black 15%, black 100%);
-      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 12%, black 100%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Right Side: Typography & Details */
@@ -103,7 +113,6 @@
       flex: 1;
       height: 100%;
       display: flex;
-      flex-col: column;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -115,7 +124,7 @@
     .shloka {
       font-family: 'Rozha One', serif;
       font-size: 26px;
-      color: #8b1e1e;
+      color: #9c6530;
       letter-spacing: 0.05em;
       margin-bottom: 6px;
     }
@@ -151,14 +160,14 @@
       font-family: 'Great Vibes', cursive;
       font-size: 90px;
       line-height: 1.02;
-      color: #1a1814;
+      color: #9c6530;
       margin: 4px 0;
       text-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }
 
     .names span.amp {
       font-size: 65px;
-      color: #9e7d3b;
+      color: #b58c58;
       margin: 0 10px;
       font-family: 'Great Vibes', cursive;
     }
@@ -192,7 +201,7 @@
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.14em;
-      color: #8b1e1e;
+      color: #9c6530;
       text-transform: uppercase;
     }
 
@@ -247,33 +256,35 @@
 
   <!-- Left: Couple Art -->
   <div class="couple-container">
-    <img src="../editable/assets/layer-couple.png" class="couple-img" alt="Durgesh and Tripti">
+    <div class="couple-circle">
+      <img src="../editable/assets/couple-hero-circle.png" class="couple-img" alt="Tripti and Durgesh">
+    </div>
   </div>
 
-  <!-- Right: Ceremony Info (Groom First!) -->
+  <!-- Right: Ceremony Info (Tripti First!) -->
   <div class="details-container">
     <div class="shloka">॥ ॐ श्री गणेशाय नमः ॥</div>
     <div class="invitation-badge">W E D D I N G &nbsp; I N V I T A T I O N</div>
     <div class="divider"></div>
 
     <div class="names">
-      Durgesh<span class="amp">&</span>Tripti
+      Tripti<span class="amp">&</span>Durgesh
     </div>
 
     <div class="full-names">
-      Durgesh Pratap Singh &nbsp;·&nbsp; Tripti Singh
+      Tripti Singh &nbsp;·&nbsp; Durgesh Pratap Singh
     </div>
 
     <div class="events-grid">
       <div class="event-row">
-        <span class="event-tag">Ring Ceremony</span>
+        <span class="event-tag">Haldi Ceremony</span>
         <span class="event-dot">◆</span>
-        <span class="event-detail">17 October 2026 · 11:00 AM onwards</span>
+        <span class="event-detail">2 December 2026 · 1:00 PM onwards</span>
       </div>
       <div class="event-row">
-        <span class="event-tag">Haldi & Sangeet</span>
+        <span class="event-tag">Sangeet Night</span>
         <span class="event-dot">◆</span>
-        <span class="event-detail">2 December 2026 · 1:00 PM & 7:00 PM</span>
+        <span class="event-detail">2 December 2026 · 7:00 PM onwards</span>
       </div>
       <div class="event-row">
         <span class="event-tag">Shubh Vivah</span>
@@ -283,11 +294,11 @@
     </div>
 
     <div class="venue-summary">
-      Awadh Castle &nbsp;•&nbsp; Hotel Holiday Heights
+      Awadh Castle
     </div>
 
     <div class="bottom-pill">
-      <span>#DurgeshWedsTripti &nbsp;·&nbsp; Tap to Open Digital Invitation</span>
+      <span>#TriptiWedsDurgesh &nbsp;·&nbsp; Tap to Open Digital Invitation</span>
     </div>
   </div>
 </body>

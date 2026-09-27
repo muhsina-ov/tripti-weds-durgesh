@@ -23,41 +23,33 @@ Please change the parent <Route path="${C}"> to <Route path="${C==="/"?"*":`${C}
   venueData = weddingData.venue || {},
   verseData = weddingData.verse || weddingData.religious || {},
   imagesData = weddingData.images || {},
-  musicData = weddingData.music || {};
+  musicData = weddingData.music || {},
+  rsvpData = weddingData.rsvp || {};
 
 const ft = {
-  groom: coupleData.groom ?? weddingData.groom ?? "Durgesh",
   bride: coupleData.bride ?? weddingData.bride ?? "Tripti",
-  groomFull: coupleData.groomFull ?? weddingData.groomFull ?? "Durgesh Pratap Singh",
+  groom: coupleData.groom ?? weddingData.groom ?? "Durgesh",
   brideFull: coupleData.brideFull ?? weddingData.brideFull ?? "Tripti Singh",
-  groomParents: coupleData.groomParents ?? weddingData.groomParents ?? "Together with their cherished families",
+  groomFull: coupleData.groomFull ?? weddingData.groomFull ?? "Durgesh Pratap Singh",
   brideParents: coupleData.brideParents ?? weddingData.brideParents ?? "With the loving blessings of family and elders",
-  hashtag: coupleData.hashtag ?? weddingData.hashtag ?? "#DurgeshWedsTripti",
-  monogram: coupleData.monogram ?? weddingData.monogram ?? "D · T",
+  groomParents: coupleData.groomParents ?? weddingData.groomParents ?? "Together with their cherished families",
+  hashtag: coupleData.hashtag ?? weddingData.hashtag ?? "#TriptiWedsDurgesh",
+  monogram: coupleData.monogram ?? weddingData.monogram ?? "T · D",
   familySign: coupleData.familySign ?? "With love & blessings, the Singh families",
   dateISO: weddingEventData.dateISO ?? weddingData.dateISO ?? "2026-12-03T19:00:00+05:30",
   dateLabel: weddingEventData.dateLabel ?? weddingData.dateLabel ?? "Thursday, 3rd December 2026",
   timeLabel: weddingEventData.timeLabel ?? weddingData.timeLabel ?? "Wedding at 7:00 PM onwards",
   venue: {
     name: venueData.name ?? "Awadh Castle",
-    address: venueData.address ?? "Awadh Castle (Haldi, Sangeet & Wedding) • Hotel Holiday Heights (Engagement)",
+    address: venueData.address ?? "Awadh Castle (Haldi, Sangeet & Wedding)",
     mapsQuery: venueData.mapsQuery ?? "Awadh Castle",
     mapsUrl: venueData.mapsUrl ?? "https://maps.app.goo.gl/4cXmFXDzBceqM5ZH9?g_st=ic"
   },
   venues: weddingData.venues ?? [
     {
-      id: "holiday-heights",
-      name: "Hotel Holiday Heights",
-      role: "Engagement Venue",
-      events: "Engagement Ceremony • 17 October 2026 (11:00 AM onwards)",
-      mapsUrl: "https://maps.app.goo.gl/QkwJTDuG6zYTm3Wd8?g_st=ic",
-      mapsQuery: "Hotel Holiday Heights",
-      mapsEmbed: "https://maps.google.com/maps?q=Hotel+Holiday+Heights&output=embed"
-    },
-    {
       id: "awadh-castle",
       name: "Awadh Castle",
-      role: "Wedding Functions Venue",
+      role: "Wedding Venue",
       events: "Haldi & Sangeet (2 Dec) • Wedding Ceremony (3 Dec)",
       mapsUrl: "https://maps.app.goo.gl/4cXmFXDzBceqM5ZH9?g_st=ic",
       mapsQuery: "Awadh Castle",
@@ -71,19 +63,6 @@ const ft = {
     text: verseData.text ?? "With joy in our hearts and the blessings of our families, we invite you to celebrate the wedding ceremonies of Tripti & Durgesh as we begin our forever together."
   },
   events: weddingData.events ?? [
-    {
-      id: "engagement",
-      name: "Engagement",
-      category: "Ring Ceremony",
-      date: "Saturday, 17th October 2026",
-      dayLabel: "Saturday",
-      dayNum: "17",
-      monthLabel: "October 2026",
-      time: "11:00 AM onwards",
-      venue: "Hotel Holiday Heights",
-      mapsUrl: "https://maps.app.goo.gl/QkwJTDuG6zYTm3Wd8?g_st=ic",
-      note: "An auspicious celebration marking the joyful beginning of our journey together."
-    },
     {
       id: "haldi",
       name: "Haldi",
@@ -125,13 +104,20 @@ const ft = {
     }
   ],
   program: weddingData.program ?? [
-    { name: "Engagement Ceremony", time: "17 Oct · 11:00 AM", venue: "Hotel Holiday Heights" },
     { name: "Haldi Ceremony", time: "02 Dec · 1:00 PM", venue: "Awadh Castle" },
     { name: "Sangeet Night", time: "02 Dec · 7:00 PM", venue: "Awadh Castle" },
     { name: "Baraat & Reception", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" },
     { name: "Sacred Pheras & Vows", time: "03 Dec · 10:00 PM", venue: "Awadh Castle" }
   ],
-  sections: weddingData.sections ?? { events: !0, venues: !0, photos: !0, countdown: !0, music: !0 },
+  sections: weddingData.sections ?? { events: !0, venues: !0, photos: !0, countdown: !0, music: !0, rsvp: !0 },
+  rsvp: {
+    enabled: rsvpData.enabled ?? !0,
+    title: rsvpData.title ?? "RSVP",
+    subtitle: rsvpData.subtitle ?? "We look forward to celebrating with you",
+    note: rsvpData.note ?? "Kindly confirm your presence to help us prepare for your arrival.",
+    whatsappNumber: rsvpData.whatsappNumber ?? "+91 77381 06700",
+    whatsappQuery: rsvpData.whatsappQuery ?? "Hi Tripti & Durgesh, I will be attending your wedding celebrations!"
+  },
   music: {
     audio: musicData.audio ?? "./editable/assets/music.mp3",
     title: musicData.title ?? "Navrai Majhi",
@@ -147,11 +133,9 @@ const ft = {
     }
   ],
   images: {
-    couple: imagesData.couple ?? "./editable/assets/layer-couple.png",
+    couple: imagesData.couple ?? "./editable/assets/couple-hero-circle.png",
     background: imagesData.background ?? "./editable/assets/layer-01-background.png",
     shadows: imagesData.shadows ?? "./editable/assets/layer-02-shadows.png",
-    groom: imagesData.groom ?? "./editable/assets/layer-03-groom.png",
-    bride: imagesData.bride ?? "./editable/assets/layer-04-bride.png",
     bouquet: imagesData.bouquet ?? "./editable/assets/layer-05-bouquet.png",
     heroComposite: imagesData.heroComposite ?? "./editable/assets/hero-composite.jpg",
     couplePhoto: imagesData.couplePhoto ?? "./editable/assets/couple-photo.jpg"
@@ -204,9 +188,6 @@ const xM = (customDateISO, customVenueName, customAddress) => {
   h.click();
   URL.revokeObjectURL(f);
 };
-
-const SM = `https://www.google.com/maps?q=${encodeURIComponent(ft.venue.mapsQuery)}&output=embed`;
-const bM = ft.venue.mapsUrl || `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ft.venue.mapsQuery)}`;
 
 const Zc = [0.65, 0, 0.35, 1];
 
@@ -278,8 +259,12 @@ function TM({ onOpening: n, onOpened: a }) {
             initial: { opacity: 0, y: 18 },
             animate: { opacity: 1, y: 0 },
             transition: { delay: 0.28, duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-            className: "mt-4 font-script text-5xl text-[#1a1814] sm:text-6xl",
-            children: [ft.groom, " & ", ft.bride]
+            className: "mt-4 font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm",
+            children: [
+              z.jsx(st.span, { className: "inline-block text-[#9c6530]", children: ft.bride }),
+              z.jsx("span", { className: "mx-2 inline-block font-script text-[0.7em] text-[#b58c58]", children: "&" }),
+              z.jsx(st.span, { className: "inline-block text-[#9c6530]", children: ft.groom })
+            ]
           }),
           z.jsx(st.p, {
             initial: { opacity: 0 },
@@ -418,7 +403,8 @@ function hh(n = 8) {
   );
 }
 
-function AM({ count: n = 14 }) {
+// Romantic Rose-Gold Petals falling gently
+function AM({ count: n = 16 }) {
   const a = E.useMemo(
     () =>
       Array.from({ length: n }, (l, o) => ({
@@ -426,9 +412,9 @@ function AM({ count: n = 14 }) {
         left: (o * 17 + 7) % 100,
         delay: (o % 9) * 0.7,
         duration: 11 + (o % 6) * 1.4,
-        size: 6 + (o % 5) * 2,
+        size: 7 + (o % 5) * 2.5,
         drift: 18 + (o % 4) * 10,
-        opacity: 0.18 + (o % 5) * 0.06,
+        opacity: 0.28 + (o % 5) * 0.08,
         rotate: (o % 2 === 0 ? 1 : -1) * (20 + (o % 5) * 12)
       })),
     [n]
@@ -440,7 +426,7 @@ function AM({ count: n = 14 }) {
       z.jsx(
         "span",
         {
-          className: "absolute top-[-10%] rounded-[40%_60%_55%_45%] bg-[#1a1814]",
+          className: "absolute top-[-10%] rounded-[40%_60%_55%_45%] bg-[#ba8250] shadow-[0_2px_8px_rgba(186,130,80,0.25)]",
           style: {
             left: `${l.left}%`,
             width: l.size,
@@ -479,35 +465,34 @@ const CM = Array.from({ length: 26 }, (n, a) => ({
   duration: 2.6 + (a % 6) * 0.4
 }));
 
+// Page 1 — Hero section featuring customer photograph in circular cutout with preserved background
 function RM() {
   const n = E.useRef(null),
     a = wM(!0),
     [l, o] = E.useState(!1),
     { scrollYProgress: u } = ch({ target: n, offset: ["start start", "end start"] }),
-    f = Hs(Dn(u, [0, 1], [0, 140]), { stiffness: 90, damping: 26 }),
-    h = Hs(Dn(u, [0, 1], [1, 0.92]), { stiffness: 90, damping: 26 }),
+    f = Hs(Dn(u, [0, 1], [0, 110]), { stiffness: 90, damping: 26 }),
+    h = Hs(Dn(u, [0, 1], [1, 0.94]), { stiffness: 90, damping: 26 }),
     d = Dn(u, [0, 0.75], [1, 0.15]),
-    y = Hs(Dn(u, [0, 1], [0, -70]), { stiffness: 90, damping: 26 }),
+    y = Hs(Dn(u, [0, 1], [0, -60]), { stiffness: 90, damping: 26 }),
     p = Dn(u, [0, 0.55], [1, 0]),
     g = Dn(u, [0, 1], [0.35, 0.85]),
     v = sM`linear-gradient(to bottom, rgba(243,237,227,${g}), transparent 40%, rgba(243,237,227,0.95))`,
     S = E.useMemo(
       () => ({
-        bg: Cn(a, 0.1, { scale: 1.1, scrollY: 0.35 }),
+        bg: Cn(a, 0.1, { scale: 1.08, scrollY: 0.3 }),
         glow: Cn(a, 0.22, { scrollY: 0.2 }),
-        shadows: Cn(a, 0.38, { scrollY: 0.55 }),
-        groom: Cn(a, 0.55, { rotate: 0.55, scrollY: 0.4 }),
-        bride: Cn(a, 0.72, { rotate: -0.65, scrollY: 0.55 }),
-        couple: Cn(a, 0.62, { scrollY: 0.7 }),
+        couple: Cn(a, 0.45, { rotate: 0.35, scrollY: 0.45 }),
         sparks: Cn(a, 1.35, { scrollY: 1.1 }),
-        title: Cn(a, 0.18, { invert: !0, scrollY: -0.2 })
+        title: Cn(a, 0.18, { invert: !0, scrollY: -0.15 })
       }),
       [a]
     ),
     w = 0.55 + a.velocity * 0.9;
+
   return z.jsxs("section", {
     ref: n,
-    className: "relative flex min-h-[115dvh] flex-col overflow-hidden",
+    className: "relative flex min-h-[105dvh] flex-col overflow-hidden",
     onPointerEnter: () => o(!0),
     onPointerLeave: () => o(!1),
     children: [
@@ -518,212 +503,166 @@ function RM() {
         children: z.jsx("img", {
           src: ft.images.background,
           alt: "",
-          className: "h-full w-full object-cover opacity-90",
+          className: "h-full w-full object-cover opacity-85",
           draggable: !1
         })
       }),
       z.jsx(MM, { x: a.x, y: a.y }),
+
+      // Central Hero Content with Customer Circular Photo
       z.jsxs(st.div, {
-        className: "pointer-events-none absolute inset-x-0 bottom-0 top-[16%] z-[1] mx-auto w-full max-w-[440px] sm:max-w-[480px]",
-        style: { y: f, scale: h, opacity: d },
+        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(9svh,4.8rem)] text-center",
+        style: { y, opacity: p },
         children: [
-          z.jsx("div", {
-            className: "absolute inset-0 will-change-transform",
-            style: S.glow,
-            children: z.jsx("div", {
-              className: "absolute left-1/2 top-[38%] h-[70%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full",
-              style: {
-                background:
-                  "radial-gradient(circle, rgba(255,255,255,0.62) 0%, rgba(255,250,242,0.22) 42%, transparent 70%)",
-                animation: "halo-breathe 5.5s ease-in-out infinite"
-              }
-            })
+          z.jsxs("div", {
+            className: "flex w-full flex-col items-center will-change-transform",
+            style: S.title,
+            children: [
+              z.jsx(st.p, {
+                initial: { opacity: 0, y: 12, letterSpacing: "0.55em" },
+                animate: { opacity: 1, y: 0, letterSpacing: "0.42em" },
+                transition: { delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                className: "font-display text-[11px] uppercase tracking-[0.42em] text-[#6e6256]",
+                children: "Together with their families"
+              }),
+              z.jsxs(st.h1, {
+                initial: { opacity: 0, y: 22 },
+                animate: { opacity: 1, y: 0 },
+                transition: { delay: 0.4, duration: 1.05, ease: [0.22, 1, 0.36, 1] },
+                className: "mt-3 font-script leading-[0.98] text-[#9c6530] drop-shadow-sm",
+                style: { fontSize: "clamp(3.2rem, 13vw, 5.4rem)" },
+                children: [
+                  z.jsx(st.span, {
+                    className: "inline-block text-[#9c6530]",
+                    whileHover: { y: -3, transition: { duration: 0.35 } },
+                    children: ft.bride
+                  }),
+                  z.jsx("span", {
+                    className: "mx-2 inline-block font-script text-[0.65em] text-[#b58c58]",
+                    children: "&"
+                  }),
+                  z.jsx(st.span, {
+                    className: "inline-block text-[#9c6530]",
+                    whileHover: { y: -3, transition: { duration: 0.35 } },
+                    children: ft.groom
+                  })
+                ]
+              }),
+              z.jsx(st.div, {
+                initial: { scaleX: 0, opacity: 0 },
+                animate: { scaleX: 1, opacity: 1 },
+                transition: { delay: 0.65, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                className: "mt-4 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent"
+              })
+            ]
           }),
-          z.jsx("div", {
-            className: "absolute inset-0 will-change-transform opacity-60 mix-blend-multiply",
-            style: S.shadows,
-            children: z.jsx("img", {
-              src: ft.images.shadows,
-              alt: "",
-              className: "absolute bottom-0 left-1/2 h-[65%] w-auto max-w-none -translate-x-1/2 object-contain opacity-45",
-              draggable: !1
-            })
-          }),
+
+          // Small, elegant circular photograph of couple (waist-up cutout)
           z.jsx(st.div, {
-            className: "absolute inset-0 will-change-transform",
-            style: S.groom,
-            initial: { opacity: 0, x: -32 },
-            animate: { opacity: 1, x: 0 },
-            transition: { delay: 0.55, duration: 1.35, ease: [0.22, 1, 0.36, 1] },
-            children: z.jsx("img", {
-              src: ft.images.groom,
-              alt: "",
-              className: "absolute bottom-[1%] left-1/2 h-[92%] w-auto max-w-none -translate-x-[54%] object-contain opacity-[0.14] blur-[0.4px]",
-              draggable: !1
-            })
-          }),
-          z.jsx(st.div, {
-            className: "absolute inset-0 will-change-transform",
-            style: S.bride,
-            initial: { opacity: 0, x: 32 },
-            animate: { opacity: 1, x: 0 },
-            transition: { delay: 0.7, duration: 1.35, ease: [0.22, 1, 0.36, 1] },
-            children: z.jsx("img", {
-              src: ft.images.bride,
-              alt: "",
-              className: "absolute bottom-[1%] left-1/2 h-[92%] w-auto max-w-none -translate-x-[44%] object-contain opacity-[0.12] blur-[0.4px]",
-              draggable: !1
-            })
-          }),
-          z.jsx(st.div, {
-            className: "absolute inset-0 z-[2] will-change-transform",
-            style: S.couple,
-            initial: { opacity: 0, y: 44, scale: 0.96 },
-            animate: { opacity: 1, y: 0, scale: 1 },
-            transition: { delay: 0.35, duration: 1.5, ease: [0.22, 1, 0.36, 1] },
+            className: "relative my-6 flex items-center justify-center will-change-transform",
+            style: { y: f, scale: h, opacity: d },
+            initial: { opacity: 0, scale: 0.9, y: 30 },
+            animate: { opacity: 1, scale: 1, y: 0 },
+            transition: { delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] },
             children: z.jsxs("div", {
-              className: "absolute bottom-0 left-1/2 h-[96%] w-[92%] max-w-[92%] -translate-x-1/2",
+              className: "group relative flex h-48 w-48 sm:h-56 sm:w-56 items-center justify-center",
+              style: S.couple,
               children: [
-                z.jsx("img", {
-                  src: ft.images.couple,
-                  alt: `${ft.brideFull} and ${ft.groomFull}`,
-                  className: "h-full w-full object-contain drop-shadow-[0_28px_50px_rgba(60,45,30,0.16)]",
-                  style: { animation: "waltz-sway-inner 7.5s ease-in-out infinite" },
-                  draggable: !1
+                // Soft golden glow halo behind circular photo
+                z.jsx("div", {
+                  className: "absolute inset-0 rounded-full blur-xl opacity-70",
+                  style: {
+                    background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, rgba(186,130,80,0.15) 55%, transparent 70%)",
+                    animation: "halo-breathe 5.5s ease-in-out infinite"
+                  }
+                }),
+                // Outer delicate double gold ring
+                z.jsx("div", {
+                  className: "absolute inset-0 rounded-full border border-[#b88644]/50 shadow-[0_16px_45px_rgba(50,35,20,0.18)]"
                 }),
                 z.jsx("div", {
-                  className: `pointer-events-none absolute inset-0 overflow-hidden ${l ? "opacity-100" : "opacity-40"}`,
-                  style: {
-                    maskImage: `url(${ft.images.couple})`,
-                    WebkitMaskImage: `url(${ft.images.couple})`,
-                    maskSize: "contain",
-                    WebkitMaskSize: "contain",
-                    maskRepeat: "no-repeat",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskPosition: "center bottom",
-                    WebkitMaskPosition: "center bottom"
-                  },
-                  children: z.jsx("span", {
-                    className: "absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/35 to-transparent",
-                    style: { animation: "dress-shimmer 3.8s ease-in-out infinite" }
+                  className: "absolute inset-1.5 rounded-full border border-[#d4af37]/30"
+                }),
+                // Inner photo image
+                z.jsx("div", {
+                  className: "relative h-full w-full overflow-hidden rounded-full p-2",
+                  children: z.jsx("img", {
+                    src: ft.images.couple,
+                    alt: `${ft.brideFull} & ${ft.groomFull}`,
+                    className: "h-full w-full object-cover object-center drop-shadow-[0_12px_28px_rgba(40,30,20,0.15)]",
+                    style: { animation: "waltz-sway-inner 7.5s ease-in-out infinite" },
+                    draggable: !1
                   })
                 })
               ]
             })
           }),
-          z.jsx(st.div, {
-            className: "absolute inset-0 z-[3] will-change-transform",
-            style: Cn(a, 1.05, { rotate: 1.1, scale: 1.03 + a.velocity * 0.05, scrollY: 0.95 }),
-            initial: { opacity: 0, y: 22 },
+
+          // Date & Time subtitle
+          z.jsxs(st.div, {
+            initial: { opacity: 0, y: 10 },
             animate: { opacity: 1, y: 0 },
-            transition: { delay: 1.1, duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-            children: z.jsx("img", {
-              src: ft.images.bouquet,
-              alt: "",
-              className: "absolute bottom-[16%] right-[-2%] w-[28%] max-w-[120px] opacity-95 drop-shadow-[0_12px_24px_rgba(40,30,20,0.18)]",
-              style: { animation: "pearl-drift 5.8s ease-in-out infinite" },
-              draggable: !1
-            })
-          }),
-          z.jsx("div", {
-            className: "absolute inset-0 z-[4] will-change-transform",
-            style: S.sparks,
-            "aria-hidden": !0,
-            children: CM.map(b =>
-              z.jsx(
-                "span",
-                {
-                  className: "absolute rounded-full bg-white",
-                  style: {
-                    left: `${b.left}%`,
-                    top: `${b.top}%`,
-                    width: b.size,
-                    height: b.size,
-                    opacity: w,
-                    boxShadow: `0 0 ${6 + a.velocity * 10}px rgba(255,255,255,${0.7 + a.velocity * 0.3})`,
-                    animation: `sparkle ${b.duration}s ease-in-out ${b.delay}s infinite`
-                  }
-                },
-                b.id
-              )
-            )
+            transition: { delay: 0.85, duration: 0.9 },
+            className: "flex flex-col items-center gap-1",
+            children: [
+              z.jsx("p", {
+                className: "font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
+                children: ft.dateLabel
+              }),
+              z.jsx("p", {
+                className: "text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
+                children: ft.timeLabel
+              }),
+              z.jsx("p", {
+                className: "mt-1 text-[12px] font-medium tracking-wider text-[#9c6530]",
+                children: `📍 ${ft.venue.name}`
+              })
+            ]
           })
         ]
       }),
-      z.jsx(st.div, { className: "pointer-events-none absolute inset-0 z-[5]", style: { background: v } }),
-      z.jsx("div", { className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-36 bg-gradient-to-b from-[#f3ede3] to-transparent" }),
-      z.jsx(st.div, {
-        className: "relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col items-center px-6 pt-[min(10svh,5.5rem)] text-center",
-        style: { y, opacity: p },
-        children: z.jsxs("div", {
-          className: "flex w-full flex-col items-center will-change-transform",
-          style: S.title,
-          children: [
-            z.jsx(st.p, {
-              initial: { opacity: 0, y: 12, letterSpacing: "0.55em" },
-              animate: { opacity: 1, y: 0, letterSpacing: "0.42em" },
-              transition: { delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-              className: "font-display text-[11px] uppercase text-[#6e6256]",
-              children: "Together with their families"
-            }),
-            z.jsxs(st.h1, {
-              initial: { opacity: 0, y: 22 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: 0.4, duration: 1.05, ease: [0.22, 1, 0.36, 1] },
-              className: "mt-4 font-script leading-[0.95] text-[#1a1814]",
-              style: { fontSize: "clamp(3.4rem, 14vw, 5.6rem)" },
-              children: [
-                z.jsx(st.span, {
-                  className: "inline-block",
-                  whileHover: { y: -3, transition: { duration: 0.35 } },
-                  children: ft.groom
-                }),
-                z.jsx("span", {
-                  className: "mx-2 inline-block font-script text-[0.55em] text-[#8a7a68]",
-                  children: "&"
-                }),
-                z.jsx(st.span, {
-                  className: "inline-block",
-                  whileHover: { y: -3, transition: { duration: 0.35 } },
-                  children: ft.bride
-                })
-              ]
-            }),
-            z.jsx(st.div, {
-              initial: { scaleX: 0, opacity: 0 },
-              animate: { scaleX: 1, opacity: 1 },
-              transition: { delay: 0.75, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-              className: "mt-5 h-px w-28 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/35 to-transparent"
-            }),
-            z.jsx(st.p, {
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: 0.9, duration: 0.9 },
-              className: "mt-4 font-display text-lg tracking-wide text-[#3d342c] sm:text-xl",
-              children: ft.dateLabel
-            }),
-            z.jsx(st.p, {
-              initial: { opacity: 0 },
-              animate: { opacity: 1 },
-              transition: { delay: 1.05, duration: 0.8 },
-              className: "mt-1 text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
-              children: ft.timeLabel
-            })
-          ]
-        })
+
+      // Ambient golden sparks
+      z.jsx("div", {
+        className: "pointer-events-none absolute inset-0 z-[4] will-change-transform",
+        style: S.sparks,
+        "aria-hidden": !0,
+        children: CM.map(b =>
+          z.jsx(
+            "span",
+            {
+              className: "absolute rounded-full bg-white",
+              style: {
+                left: `${b.left}%`,
+                top: `${b.top}%`,
+                width: b.size,
+                height: b.size,
+                opacity: w,
+                boxShadow: `0 0 ${6 + a.velocity * 10}px rgba(255,255,255,${0.7 + a.velocity * 0.3})`,
+                animation: `sparkle ${b.duration}s ease-in-out ${b.delay}s infinite`
+              }
+            },
+            b.id
+          )
+        )
       }),
+
+      z.jsx(st.div, { className: "pointer-events-none absolute inset-0 z-[5]", style: { background: v } }),
+      z.jsx("div", { className: "pointer-events-none absolute inset-x-0 top-0 z-[5] h-32 bg-gradient-to-b from-[#f3ede3] to-transparent" }),
+
+      // Smooth scroll button
       z.jsxs(st.button, {
         type: "button",
         initial: { opacity: 0 },
         animate: { opacity: 1 },
-        transition: { delay: 1.6 },
+        transition: { delay: 1.4 },
         onClick: () => window.scrollTo({ top: window.innerHeight * 0.85, behavior: "smooth" }),
         className: "relative z-10 mb-8 flex flex-col items-center gap-2 text-[#7a6d60] transition-colors hover:text-[#1a1814]",
         "aria-label": "Scroll to invitation details",
         children: [
           z.jsx("span", { className: "text-[10px] uppercase tracking-[0.38em]", children: "Scroll" }),
           z.jsx("span", {
-            className: "block h-8 w-px bg-gradient-to-b from-[#1a1814]/45 to-transparent",
+            className: "block h-8 w-px bg-gradient-to-b from-[#9c6530]/60 to-transparent",
             style: { animation: "scroll-pulse 2.2s ease-in-out infinite" }
           })
         ]
@@ -788,7 +727,7 @@ function DM() {
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: !0 },
             transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-            className: "font-display text-base font-semibold tracking-widest text-[#8a724d] sm:text-lg",
+            className: "font-display text-base font-semibold tracking-widest text-[#9c6530] sm:text-lg",
             children: ft.verse.sanskrit || ft.verse.arabic
           }),
           ft.verse.shloka &&
@@ -805,7 +744,7 @@ function DM() {
             whileInView: { scaleX: 1 },
             viewport: { once: !0 },
             transition: { delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-            className: "mt-8 h-px w-20 origin-center bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent"
+            className: "mt-8 h-px w-20 origin-center bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent"
           }),
           z.jsx(u0, {
             className: "mt-8 flex flex-wrap justify-center gap-x-1.5 gap-y-1",
@@ -868,7 +807,7 @@ function zM({ value: n }) {
           animate: { y: 0, opacity: 1 },
           exit: { y: -16, opacity: 0 },
           transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] },
-          className: "inline-block tabular-nums",
+          className: "inline-block tabular-nums text-[#9c6530]",
           children: a
         },
         a
@@ -888,9 +827,9 @@ function OM({ label: n, value: a, delay: l }) {
     transition: { delay: l, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
     whileHover: { y: -4 },
     className:
-      "rounded-[1.35rem] bg-[rgba(26,24,20,0.03)] px-2 py-5 ring-1 ring-[rgba(26,24,20,0.08)] transition-shadow duration-500 hover:shadow-[0_18px_40px_rgba(60,45,30,0.1)]",
+      "rounded-[1.35rem] bg-[rgba(26,24,20,0.03)] px-2 py-5 ring-1 ring-[rgba(156,101,48,0.15)] transition-shadow duration-500 hover:shadow-[0_18px_40px_rgba(60,45,30,0.1)]",
     children: [
-      z.jsx("p", { className: "font-display text-3xl text-[#1a1814] sm:text-4xl", children: z.jsx(zM, { value: a }) }),
+      z.jsx("p", { className: "font-display text-3xl text-[#9c6530] sm:text-4xl", children: z.jsx(zM, { value: a }) }),
       z.jsx("p", { className: "mt-2 text-[9px] uppercase tracking-[0.28em] text-[#7a6d60]", children: n })
     ]
   });
@@ -915,7 +854,7 @@ function NM() {
       className: "mx-auto max-w-lg text-center",
       children: [
         z.jsx("p", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Counting the moments" }),
-        z.jsx("h2", { className: "mt-3 font-script text-5xl text-[#1a1814]", children: "Until the Wedding" }),
+        z.jsx("h2", { className: "mt-3 font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: "Until the Wedding" }),
         z.jsx("div", {
           className: "mt-10 grid grid-cols-4 gap-3 sm:gap-4",
           children: o.map((u, f) => z.jsx(OM, { label: u.label, value: u.value, delay: f * 0.07 }, u.label))
@@ -934,7 +873,7 @@ function EventCard({ event, index }) {
     whileHover: { y: -6 },
     transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
     className:
-      "relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[#fffaf4]/85 p-6 sm:p-8 text-center shadow-[0_24px_65px_rgba(60,45,30,0.08)] ring-1 ring-[rgba(26,24,20,0.08)] transition-all duration-500",
+      "relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[#fffaf4]/85 p-6 sm:p-8 text-center shadow-[0_24px_65px_rgba(60,45,30,0.08)] ring-1 ring-[rgba(156,101,48,0.18)] transition-all duration-500",
     children: [
       z.jsx("div", { className: "pointer-events-none absolute inset-3 rounded-[1.55rem] ring-1 ring-[rgba(26,24,20,0.06)]" }),
       z.jsx("span", {
@@ -949,7 +888,7 @@ function EventCard({ event, index }) {
           event.category &&
             z.jsx("span", {
               className:
-                "mb-3 inline-block rounded-full bg-[#1a1814]/5 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.25em] text-[#7a6d60]",
+                "mb-3 inline-block rounded-full bg-[#9c6530]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.25em] text-[#9c6530]",
               children: event.category
             }),
           z.jsx("p", { className: "text-[11px] uppercase tracking-[0.38em] text-[#8a7a68]", children: event.dayLabel }),
@@ -962,13 +901,13 @@ function EventCard({ event, index }) {
             children: event.dayNum
           }),
           z.jsx("p", { className: "mt-2 font-display text-lg tracking-[0.16em] text-[#4a4036] sm:text-xl", children: event.monthLabel }),
-          z.jsx("div", { className: "mx-auto mt-5 h-px w-16 bg-[#1a1814]/15" }),
-          z.jsx("h3", { className: "mt-5 font-script text-4xl text-[#1a1814] sm:text-5xl", children: event.name }),
+          z.jsx("div", { className: "mx-auto mt-5 h-px w-16 bg-[#9c6530]/30" }),
+          z.jsx("h3", { className: "mt-5 font-script text-4xl text-[#9c6530] sm:text-5xl", children: event.name }),
           z.jsx("p", { className: "mt-2 font-display text-xl font-medium text-[#2c261f]", children: event.time }),
           z.jsxs("p", {
             className: "mt-2 flex items-center justify-center gap-1.5 text-[13px] font-medium tracking-wide text-[#6e6256]",
             children: [
-              z.jsx(qM, { size: 14, className: "text-[#8a7a68]" }),
+              z.jsx(qM, { size: 14, className: "text-[#9c6530]" }),
               event.venue
             ]
           }),
@@ -989,7 +928,7 @@ function EventCard({ event, index }) {
             whileHover: { y: -2, scale: 1.02 },
             whileTap: { scale: 0.98 },
             className:
-              "inline-flex items-center justify-center gap-2 rounded-full border border-[#1a1814]/15 bg-[#1a1814]/5 px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#2c261f] transition-all hover:bg-[#1a1814] hover:text-[#f6f0e6]",
+              "inline-flex items-center justify-center gap-2 rounded-full border border-[#9c6530]/30 bg-[#9c6530]/10 px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#2c261f] transition-all hover:bg-[#1a1814] hover:text-[#f6f0e6]",
             children: [
               z.jsx(XM, { size: 12 }),
               "Directions & Map ↗"
@@ -1004,25 +943,20 @@ function VM() {
   return z.jsxs("section", {
     className: "relative overflow-hidden px-6 py-24",
     children: [
-      z.jsx(dh, {
-        speed: 0.18,
-        className: "pointer-events-none absolute -left-10 top-24 opacity-[0.06]",
-        children: z.jsx("img", { src: ft.images.couple, alt: "", className: "w-56 -scale-x-100 sm:w-72" })
-      }),
       z.jsxs(zn, {
         className: "mb-16 flex flex-col items-center gap-3 text-center",
         children: [
           z.jsx("span", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Auspicious Celebrations" }),
-          z.jsx("h2", { className: "font-script text-5xl text-[#1a1814] sm:text-6xl", children: "Wedding Ceremonies" }),
+          z.jsx("h2", { className: "font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: "Wedding Ceremonies" }),
           z.jsx("p", {
             className: "max-w-md font-display text-sm italic text-[#6e6256]",
-            children: "Please join us as we celebrate each blessed function in chronological joy"
+            children: "Please join us as we celebrate each blessed function in joyful harmony"
           }),
-          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent" })
+          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent" })
         ]
       }),
       z.jsx("div", {
-        className: "mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2",
+        className: "mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3",
         children: ft.events.map((e, idx) =>
           z.jsx(
             zn,
@@ -1039,7 +973,7 @@ function VM() {
             className: "relative",
             children: [
               z.jsx(st.div, {
-                className: "absolute bottom-2 left-[5px] top-2 w-px origin-top bg-gradient-to-b from-[#1a1814]/30 via-[#1a1814]/15 to-transparent",
+                className: "absolute bottom-2 left-[5px] top-2 w-px origin-top bg-gradient-to-b from-[#9c6530]/50 via-[#9c6530]/20 to-transparent",
                 initial: { scaleY: 0 },
                 whileInView: { scaleY: 1 },
                 viewport: { once: !0 },
@@ -1059,7 +993,7 @@ function VM() {
                       className: "flex cursor-default items-start gap-4 pl-1",
                       children: [
                         z.jsx(st.span, {
-                          className: "mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1a1814]/70 ring-4 ring-[#f3ede3]",
+                          className: "mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#9c6530] ring-4 ring-[#f3ede3]",
                           initial: { scale: 0 },
                           whileInView: { scale: 1 },
                           viewport: { once: !0 },
@@ -1165,21 +1099,21 @@ const XM = mh("navigation", GM);
 function SingleVenueCard({ venueItem, index }) {
   const { ref: a, style: l } = hh(5);
   return z.jsxs(st.div, {
-    className: "flex flex-col gap-5 rounded-[2rem] bg-[#fffaf4]/70 p-6 sm:p-8 shadow-[0_20px_50px_rgba(60,45,30,0.06)] ring-1 ring-[rgba(26,24,20,0.08)]",
+    className: "mx-auto flex w-full max-w-xl flex-col gap-5 rounded-[2rem] bg-[#fffaf4]/85 p-6 sm:p-8 shadow-[0_20px_50px_rgba(60,45,30,0.06)] ring-1 ring-[rgba(156,101,48,0.18)]",
     children: [
       z.jsxs("div", {
         className: "flex flex-col items-center gap-1.5 text-center",
         children: [
           venueItem.role &&
             z.jsx("span", {
-              className: "inline-block rounded-full bg-[#1a1814]/5 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.25em] text-[#8a7a68]",
+              className: "inline-block rounded-full bg-[#9c6530]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.25em] text-[#9c6530]",
               children: venueItem.role
             }),
           z.jsx("h3", { className: "font-display text-2xl text-[#1a1814] sm:text-3xl", children: venueItem.name }),
           z.jsxs("p", {
             className: "flex items-center justify-center gap-1.5 text-[12px] text-[#5c5146]",
             children: [
-              z.jsx(qM, { size: 14, className: "text-[#8a7a68]" }),
+              z.jsx(qM, { size: 14, className: "text-[#9c6530]" }),
               venueItem.events || venueItem.name
             ]
           })
@@ -1207,7 +1141,7 @@ function SingleVenueCard({ venueItem, index }) {
         whileHover: { y: -2, scale: 1.015 },
         whileTap: { scale: 0.98 },
         className:
-          "group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[#1a1814] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-[#f6f0e6] shadow-[0_12px_32px_rgba(40,30,20,0.2)] transition-all",
+          "group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[#1a1814] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-[#f6f0e6] shadow-[0_12px_32px_rgba(40,30,20,0.2)] transition-all hover:bg-[#2c261f]",
         children: [
           z.jsx("span", {
             "aria-hidden": !0,
@@ -1235,16 +1169,16 @@ function kM() {
         className: "mb-14 flex flex-col items-center gap-3 text-center",
         children: [
           z.jsx("span", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Where & When" }),
-          z.jsx("h2", { className: "font-script text-5xl text-[#1a1814] sm:text-6xl", children: "The Venues" }),
+          z.jsx("h2", { className: "font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: "The Venue" }),
           z.jsx("p", {
             className: "max-w-md font-display text-sm italic text-[#6e6256]",
-            children: "Interactive directions & locations for our Engagement & Wedding ceremonies"
+            children: "Interactive directions & location for our Wedding ceremonies"
           }),
-          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent" })
+          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent" })
         ]
       }),
       z.jsx("div", {
-        className: "mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2",
+        className: "mx-auto max-w-xl",
         children: ft.venues.map((v, idx) =>
           z.jsx(
             zn,
@@ -1268,8 +1202,8 @@ function kM() {
                 whileHover: { y: -2 },
                 whileTap: { scale: 0.97 },
                 className:
-                  "flex items-center justify-center gap-2 rounded-full border border-[#1a1814]/12 bg-white/50 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-[#2c261f] transition-all hover:border-[#1a1814]/25 hover:bg-white/80",
-                children: [z.jsx(h0, { size: 14 }), " Google Cal"]
+                  "flex items-center justify-center gap-2 rounded-full border border-[#9c6530]/30 bg-white/50 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-[#2c261f] transition-all hover:border-[#9c6530] hover:bg-white/80",
+                children: [z.jsx(h0, { size: 14, className: "text-[#9c6530]" }), " Google Cal"]
               }),
               z.jsxs(st.button, {
                 type: "button",
@@ -1277,9 +1211,74 @@ function kM() {
                 whileHover: { y: -2 },
                 whileTap: { scale: 0.97 },
                 className:
-                  "flex items-center justify-center gap-2 rounded-full border border-[#1a1814]/12 bg-white/50 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-[#2c261f] transition-all hover:border-[#1a1814]/25 hover:bg-white/80",
-                children: [z.jsx(h0, { size: 14 }), " Apple / ICS"]
+                  "flex items-center justify-center gap-2 rounded-full border border-[#9c6530]/30 bg-white/50 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-[#2c261f] transition-all hover:border-[#9c6530] hover:bg-white/80",
+                children: [z.jsx(h0, { size: 14, className: "text-[#9c6530]" }), " Apple / ICS"]
               })
+            ]
+          })
+        ]
+      })
+    ]
+  });
+}
+
+// RSVP Section
+function RSVPSection() {
+  const [confirmed, setConfirmed] = E.useState(!1);
+  const { ref: a, style: l } = hh(5);
+
+  const handleRSVPAction = () => {
+    if (ft.rsvp.whatsappNumber) {
+      const url = `https://wa.me/${ft.rsvp.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(ft.rsvp.whatsappQuery)}`;
+      window.open(url, "_blank");
+    } else {
+      setConfirmed(!0);
+      setTimeout(() => setConfirmed(!1), 4000);
+    }
+  };
+
+  return z.jsxs("section", {
+    className: "relative px-6 py-20",
+    children: [
+      z.jsx("div", {
+        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9c6530]/30 to-transparent"
+      }),
+      z.jsxs(zn, {
+        className: "mx-auto max-w-lg text-center",
+        children: [
+          z.jsx("span", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Join the Celebration" }),
+          z.jsx("h2", { className: "mt-2 font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: ft.rsvp.title || "RSVP" }),
+          z.jsx("p", {
+            className: "mt-2 max-w-md font-display text-sm italic text-[#6e6256]",
+            children: ft.rsvp.subtitle || "We would be honored by your gracious presence and blessings"
+          }),
+          z.jsx("div", { className: "mx-auto my-6 h-px w-24 bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent" }),
+          z.jsxs(st.div, {
+            ref: a,
+            style: l,
+            className:
+              "relative overflow-hidden rounded-[2rem] bg-[#fffaf4]/85 p-8 shadow-[0_20px_50px_rgba(60,45,30,0.06)] ring-1 ring-[rgba(156,101,48,0.18)]",
+            children: [
+              z.jsx("p", {
+                className: "font-display text-base text-[#3d342c] leading-relaxed",
+                children: ft.rsvp.note || "Kindly confirm your presence to celebrate the joyous wedding of Tripti & Durgesh."
+              }),
+              z.jsxs(st.button,
+                {
+                  type: "button",
+                  onClick: handleRSVPAction,
+                  whileHover: { scale: 1.03, y: -2 },
+                  whileTap: { scale: 0.97 },
+                  className:
+                    "mt-6 inline-flex items-center justify-center gap-2.5 rounded-full bg-[#1a1814] px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-[#f6f0e6] shadow-[0_12px_32px_rgba(40,30,20,0.2)] transition-all hover:bg-[#2c261f]",
+                  children: [
+                    confirmed
+                      ? "Thank you! Response noted ✓"
+                      : (ft.rsvp.whatsappNumber ? "RSVP via WhatsApp" : "Confirm Attendance / RSVP"),
+                    !confirmed && z.jsx("span", { className: "text-sm", children: ft.rsvp.whatsappNumber ? "💬" : "💌" })
+                  ]
+                }
+              )
             ]
           })
         ]
@@ -1301,14 +1300,14 @@ function PM_Photos() {
     className: "relative overflow-hidden px-6 py-24",
     children: [
       z.jsx("div", {
-        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1a1814]/12 to-transparent"
+        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9c6530]/30 to-transparent"
       }),
       z.jsxs(zn, {
         className: "mb-14 flex flex-col items-center gap-3 text-center",
         children: [
           z.jsx("span", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Moments of Love" }),
-          z.jsx("h2", { className: "font-script text-5xl text-[#1a1814] sm:text-6xl", children: "The Happy Couple" }),
-          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#1a1814]/25 to-transparent" })
+          z.jsx("h2", { className: "font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: "The Happy Couple" }),
+          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent" })
         ]
       }),
       z.jsx(zn, {
@@ -1317,7 +1316,7 @@ function PM_Photos() {
           ref: a,
           style: l,
           className:
-            "mx-auto max-w-sm sm:max-w-md overflow-hidden rounded-[2.5rem] bg-[#fffaf4]/90 p-4 sm:p-5 shadow-[0_30px_80px_rgba(60,45,30,0.12)] ring-1 ring-[#1a1814]/10 transition-transform duration-500",
+            "mx-auto max-w-sm sm:max-w-md overflow-hidden rounded-[2.5rem] bg-[#fffaf4]/90 p-4 sm:p-5 shadow-[0_30px_80px_rgba(60,45,30,0.12)] ring-1 ring-[#9c6530]/20 transition-transform duration-500",
           whileHover: { y: -4, scale: 1.01 },
           children: [
             z.jsx("div", {
@@ -1333,7 +1332,7 @@ function PM_Photos() {
               className: "flex flex-col items-center gap-1.5 px-4 pb-4 pt-6 text-center",
               children: [
                 z.jsx("h3", {
-                  className: "font-script text-4xl text-[#1a1814] sm:text-5xl",
+                  className: "font-script text-4xl text-[#9c6530] sm:text-5xl",
                   children: photo.caption || `${ft.bride} & ${ft.groom}`
                 }),
                 z.jsx("p", {
@@ -1426,16 +1425,7 @@ function KM() {
     className: "relative overflow-hidden px-6 pb-20 pt-24",
     children: [
       z.jsx("div", {
-        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1a1814]/12 to-transparent"
-      }),
-      z.jsx(dh, {
-        speed: 0.15,
-        className: "pointer-events-none absolute inset-x-0 bottom-0 top-8 opacity-[0.08]",
-        children: z.jsx("img", {
-          src: ft.images.couple,
-          alt: "",
-          className: "mx-auto h-full max-w-md object-contain object-bottom"
-        })
+        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9c6530]/30 to-transparent"
       }),
       z.jsx("div", {
         className: "relative z-10 mb-10 overflow-hidden py-3",
@@ -1458,20 +1448,20 @@ function KM() {
         className: "relative z-10 mx-auto flex max-w-sm flex-col items-center gap-5 text-center",
         children: [
           z.jsx("p", {
-            className: "font-script text-4xl leading-snug text-[#1a1814] sm:text-5xl",
+            className: "font-script text-4xl leading-snug text-[#9c6530] sm:text-5xl drop-shadow-sm",
             children: "We can't wait to celebrate with you"
           }),
           z.jsx("p", {
             className: "text-[11px] uppercase tracking-[0.32em] text-[#7a6d60]",
             children: ft.familySign || "With love & blessings, the Singh families"
           }),
-          z.jsx("div", { className: "h-px w-28 bg-[#1a1814]/15" }),
+          z.jsx("div", { className: "h-px w-28 bg-[#9c6530]/30" }),
           z.jsx(st.button, {
             type: "button",
             onClick: l,
             whileTap: { scale: 0.96 },
             className: `rounded-full border px-5 py-2 text-[10px] tracking-[0.2em] transition-colors duration-500 ${
-              n ? "border-[#1a1814]/35 bg-[#1a1814]/5 text-[#1a1814]" : "border-[#1a1814]/12 text-[#7a6d60] hover:border-[#1a1814]/25 hover:text-[#2c261f]"
+              n ? "border-[#9c6530] bg-[#9c6530]/10 text-[#9c6530]" : "border-[#1a1814]/12 text-[#7a6d60] hover:border-[#9c6530]/40 hover:text-[#2c261f]"
             }`,
             children: n ? "Copied ✓" : `${ft.hashtag} · tap to copy`
           }),
@@ -1492,7 +1482,7 @@ function QM() {
   const { scrollYProgress: n } = ch(),
     a = Hs(n, { stiffness: 120, damping: 28, restDelta: 0.001 });
   return z.jsx(st.div, {
-    className: "fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#1a1814]/70",
+    className: "fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#9c6530]",
     style: { scaleX: a }
   });
 }
@@ -1566,7 +1556,7 @@ function ZM() {
         onPause: () => setIsPlaying(!1)
       }),
       z.jsx(QM, {}),
-      n === "open" && z.jsx(AM, { count: 16 }),
+      n === "open" && z.jsx(AM, { count: 18 }),
       z.jsxs(st.div, {
         initial: { scale: 1.04, opacity: 0.92 },
         animate: { scale: n === "closed" ? 1.04 : 1, opacity: 1 },
@@ -1577,6 +1567,7 @@ function ZM() {
           z.jsx(NM, {}),
           z.jsx(VM, {}),
           z.jsx(kM, {}),
+          z.jsx(RSVPSection, {}),
           z.jsx(PM_Photos, {}),
           z.jsx(KM, {})
         ]
