@@ -98,10 +98,9 @@ const ft = {
   program: weddingData.program ?? [
     { name: "Haldi Ceremony", time: "02 Dec · 1:00 PM", venue: "Awadh Castle" },
     { name: "Sangeet Night", time: "02 Dec · 7:00 PM", venue: "Awadh Castle" },
-    { name: "Baraat & Reception", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" },
-    { name: "Sacred Pheras & Vows", time: "03 Dec · 10:00 PM", venue: "Awadh Castle" }
+    { name: "Wedding Ceremony", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" }
   ],
-  sections: weddingData.sections ?? { events: !0, venues: !0, photos: !0, countdown: !0, music: !0, rsvp: !0 },
+  sections: weddingData.sections ?? { events: !0, venues: !0, photos: !1, countdown: !0, music: !0, rsvp: !0 },
   rsvp: {
     enabled: rsvpData.enabled ?? !0,
     title: rsvpData.title ?? "RSVP",
@@ -117,13 +116,6 @@ const ft = {
     youtube: musicData.youtube ?? "https://youtu.be/hEHNef66HT0?si=Own9VAlh1cS3f_qE",
     autoplayOnOpen: musicData.autoplayOnOpen ?? !0
   },
-  photos: weddingData.photos ?? [
-    {
-      src: "./editable/assets/couple-photo.jpg",
-      caption: "Tripti & Durgesh",
-      subtitle: "Two hearts, one soul, starting our forever together"
-    }
-  ],
   images: {
     couple: imagesData.couple ?? "./editable/assets/couple-hero-circle.png",
     background: imagesData.background ?? "./editable/assets/layer-01-background.png",
@@ -184,9 +176,14 @@ const xM = (customDateISO, customVenueName, customAddress) => {
 const Zc = [0.65, 0, 0.35, 1];
 
 function TM({ onOpening: n, onOpened: a }) {
-  const [l, o] = E.useState(!1);
+  const [l, o] = E.useState(!1),
+    // Ref guard (not state): the inner button's click also bubbles to this
+    // container, and two same-tick state reads would both see false and
+    // fire the open handler — and the audio start — twice.
+    openedRef = E.useRef(!1);
   const u = () => {
-    if (!l) {
+    if (!openedRef.current) {
+      openedRef.current = !0;
       o(!0);
       n();
       setTimeout(() => {
@@ -495,9 +492,19 @@ function RM() {
         children: z.jsx("img", {
           src: ft.images.background,
           alt: "",
-          className: "h-full w-full object-cover opacity-85",
+          // Softly defocused so the artwork reads as gentle depth rather than
+          // competing with the names and photo in the foreground.
+          className: "h-full w-full scale-105 object-cover opacity-80 blur-[5px] saturate-[0.9]",
           draggable: !1
         })
+      }),
+      // Warm ivory veil — keeps the foreground type crisp over the softened artwork
+      z.jsx("div", {
+        className: "pointer-events-none absolute inset-0",
+        style: {
+          background:
+            "radial-gradient(ellipse 82% 64% at 50% 44%, rgba(243,237,227,0.52) 0%, rgba(243,237,227,0.3) 55%, rgba(243,237,227,0.12) 100%)"
+        }
       }),
       z.jsx(MM, { x: a.x, y: a.y }),
 
@@ -565,7 +572,7 @@ function RM() {
                   className: "absolute inset-0 rounded-full blur-xl opacity-70",
                   style: {
                     background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, rgba(186,130,80,0.15) 55%, transparent 70%)",
-                    animation: "halo-breathe 5.5s ease-in-out infinite"
+                    animation: "halo-glow 5.5s ease-in-out infinite"
                   }
                 }),
                 // Outer delicate double gold ring
@@ -1279,76 +1286,10 @@ function RSVPSection() {
   });
 }
 
-// Dedicated Couple Photos Section preserving natural photograph
-function PM_Photos() {
-  const photo = (ft.photos && ft.photos[0]) || {
-    src: "./editable/assets/couple-photo.jpg",
-    caption: "Tripti & Durgesh",
-    subtitle: "Two hearts, one soul, starting our forever together"
-  };
-  const { ref: a, style: l } = hh(5);
-
-  return z.jsxs("section", {
-    className: "relative overflow-hidden px-6 py-24",
-    children: [
-      z.jsx("div", {
-        className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9c6530]/30 to-transparent"
-      }),
-      z.jsxs(zn, {
-        className: "mb-14 flex flex-col items-center gap-3 text-center",
-        children: [
-          z.jsx("span", { className: "text-[11px] uppercase tracking-[0.4em] text-[#8a7a68]", children: "Moments of Love" }),
-          z.jsx("h2", { className: "font-script text-5xl text-[#9c6530] sm:text-6xl drop-shadow-sm", children: "The Happy Couple" }),
-          z.jsx("div", { className: "h-px w-24 bg-gradient-to-r from-transparent via-[#9c6530]/40 to-transparent" })
-        ]
-      }),
-      z.jsx(zn, {
-        delay: 0.1,
-        children: z.jsxs(st.div, {
-          ref: a,
-          style: l,
-          className:
-            "mx-auto max-w-sm sm:max-w-md overflow-hidden rounded-[2.5rem] bg-[#fffaf4]/90 p-4 sm:p-5 shadow-[0_30px_80px_rgba(60,45,30,0.12)] ring-1 ring-[#9c6530]/20 transition-transform duration-500",
-          whileHover: { y: -4, scale: 1.01 },
-          children: [
-            z.jsx("div", {
-              className: "relative aspect-[3/4] w-full overflow-hidden rounded-[2rem] bg-[#eadecd]",
-              children: z.jsx("img", {
-                src: photo.src,
-                alt: photo.caption || \`\${ft.brideFull} & \${ft.groomFull}\`,
-                className: "h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105",
-                loading: "lazy"
-              })
-            }),
-            z.jsxs("div", {
-              className: "flex flex-col items-center gap-1.5 px-4 pb-4 pt-6 text-center",
-              children: [
-                z.jsx("h3", {
-                  className: "font-script text-4xl text-[#9c6530] sm:text-5xl",
-                  children: photo.caption || \`\${ft.bride} & \${ft.groom}\`
-                }),
-                z.jsx("p", {
-                  className: "text-[11px] uppercase tracking-[0.3em] text-[#7a6d60]",
-                  children: \`\${ft.brideFull} & \${ft.groomFull}\`
-                }),
-                photo.subtitle &&
-                  z.jsx("p", {
-                    className: "mt-2 font-display text-sm italic text-[#6e6256]",
-                    children: photo.subtitle
-                  })
-              ]
-            })
-          ]
-        })
-      })
-    ]
-  });
-}
-
 // Floating Luxury Background Music Player Widget
 function MusicFloatingWidget({ audioRef, isPlaying, onTogglePlay }) {
   return z.jsxs("div", {
-    className: "fixed bottom-6 right-6 z-50 flex items-center gap-2",
+    className: "fixed bottom-5 right-5 z-50 flex items-center gap-2 sm:bottom-6 sm:right-6",
     children: [
       z.jsxs(st.button, {
         type: "button",
@@ -1364,7 +1305,7 @@ function MusicFloatingWidget({ audioRef, isPlaying, onTogglePlay }) {
             z.jsx("span", {
               className:
                 "pointer-events-none absolute -inset-1 rounded-full border border-[#d4af37]/40 opacity-75",
-              style: { animation: "halo-breathe 2.8s ease-in-out infinite" }
+              style: { animation: "halo-ring 2.8s ease-in-out infinite" }
             }),
           z.jsxs("div", {
             className: \`flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-sm \${isPlaying ? "text-[#d4af37]" : "text-[#f3ede3]"}\`,
@@ -1378,8 +1319,9 @@ function MusicFloatingWidget({ audioRef, isPlaying, onTogglePlay }) {
                 : z.jsx("span", { className: "ml-0.5 text-xs", children: "▶" })
             ]
           }),
+          // Labels collapse on phones so the pill never sits on top of the text below it
           z.jsxs("div", {
-            className: "flex flex-col text-left pr-2",
+            className: "hidden flex-col text-left pr-2 sm:flex",
             children: [
               z.jsx("span", {
                 className: "text-[9px] font-semibold uppercase tracking-[0.22em] text-[#d4af37]",
@@ -1393,7 +1335,7 @@ function MusicFloatingWidget({ audioRef, isPlaying, onTogglePlay }) {
           }),
           isPlaying &&
             z.jsxs("div", {
-              className: "flex items-end gap-[3px] h-3.5 mr-1",
+              className: "hidden items-end gap-[3px] h-3.5 mr-1 sm:flex",
               children: [
                 z.jsx("span", { className: "w-[2px] bg-[#d4af37] rounded-full h-full animate-pulse" }),
                 z.jsx("span", { className: "w-[2px] bg-[#d4af37] rounded-full h-2/3 animate-pulse", style: { animationDelay: "0.2s" } }),
@@ -1414,7 +1356,7 @@ function KM() {
       } catch {}
     };
   return z.jsxs("footer", {
-    className: "relative overflow-hidden px-6 pb-20 pt-24",
+    className: "relative overflow-hidden px-6 pb-28 pt-24 sm:pb-20",
     children: [
       z.jsx("div", {
         className: "pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9c6530]/30 to-transparent"
@@ -1483,6 +1425,9 @@ function ZM() {
   const [n, a] = E.useState("closed");
   const [isPlaying, setIsPlaying] = E.useState(!1);
   const audioRef = E.useRef(null);
+  // Single-flight guard: guarantees the track is only ever started/stopped once,
+  // so rapid taps (or the gate's bubbling click) can never double-trigger playback.
+  const playIntent = E.useRef(!1);
 
   // Initialize Lenis smooth scrolling
   E.useEffect(() => {
@@ -1506,32 +1451,70 @@ function ZM() {
     };
   }, [n]);
 
+  // Drive the player UI from the media element's real state.
+  // The native loop attribute gives a gapless hand-off back to 0, so the song
+  // restarts seamlessly without an extra play() call (no double playback, no dead air).
+  E.useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    const sync = () => setIsPlaying(!el.paused && !el.ended);
+    const onEnded = () => {
+      // Safety net for browsers/contexts where the native loop attribute is dropped.
+      el.currentTime = 0;
+      if (playIntent.current) el.play().catch(() => {});
+      sync();
+    };
+    const onVisibility = () => {
+      if (!el.paused && el.ended) onEnded();
+    };
+    ["play", "playing", "pause", "waiting", "ended", "canplay"].forEach(ev =>
+      el.addEventListener(ev, sync)
+    );
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      ["play", "playing", "pause", "waiting", "ended", "canplay"].forEach(ev =>
+        el.removeEventListener(ev, sync)
+      );
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
+  // Start the track exactly once, when the invitation is opened.
+  const startAudio = () => {
+    const el = audioRef.current;
+    if (!el || playIntent.current) return;
+    playIntent.current = !0;
+    el.play()
+      .then(() => setIsPlaying(!0))
+      .catch(err => {
+        playIntent.current = !1;
+        console.warn("Autoplay deferred until explicit click:", err);
+        setIsPlaying(!1);
+      });
+  };
+
   // Audio start trigger on opening
   const handleOpenInvitation = () => {
     a("opening");
     setTimeout(() => {
       a("open");
     }, 1000);
-    if (audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(!0))
-        .catch(err => {
-          console.warn("Autoplay deferred until explicit click:", err);
-          setIsPlaying(!1);
-        });
-    }
+    startAudio();
   };
 
   const handleToggleAudio = () => {
-    if (!audioRef.current) return;
-    if (audioRef.current.paused) {
-      audioRef.current
-        .play()
+    const el = audioRef.current;
+    if (!el) return;
+    if (el.paused) {
+      playIntent.current = !0;
+      // Restart from the top if we somehow sit at the very end of the track.
+      if (el.ended || el.currentTime >= el.duration - 0.05) el.currentTime = 0;
+      el.play()
         .then(() => setIsPlaying(!0))
         .catch(e => console.error("Playback failed:", e));
     } else {
-      audioRef.current.pause();
+      playIntent.current = !1;
+      el.pause();
       setIsPlaying(!1);
     }
   };
@@ -1543,9 +1526,7 @@ function ZM() {
         ref: audioRef,
         src: ft.music?.audio || "./editable/assets/music.mp3",
         loop: !0,
-        preload: "auto",
-        onPlay: () => setIsPlaying(!0),
-        onPause: () => setIsPlaying(!1)
+        preload: "auto"
       }),
       z.jsx(QM, {}),
       n === "open" && z.jsx(AM, { count: 18 }),
@@ -1560,7 +1541,6 @@ function ZM() {
           z.jsx(VM, {}),
           z.jsx(kM, {}),
           z.jsx(RSVPSection, {}),
-          z.jsx(PM_Photos, {}),
           z.jsx(KM, {})
         ]
       }),

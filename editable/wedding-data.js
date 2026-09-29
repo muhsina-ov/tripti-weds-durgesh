@@ -72,11 +72,11 @@ window.WEDDING_DATA = {
     },
   ],
 
+  // Timeline view (mirrors `events` exactly — venue, date & time already covered above)
   program: [
     { name: "Haldi Ceremony", time: "02 Dec · 1:00 PM", venue: "Awadh Castle" },
     { name: "Sangeet Night", time: "02 Dec · 7:00 PM", venue: "Awadh Castle" },
-    { name: "Baraat & Reception", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" },
-    { name: "Sacred Pheras & Vows", time: "03 Dec · 10:00 PM", venue: "Awadh Castle" },
+    { name: "Wedding Ceremony", time: "03 Dec · 7:00 PM", venue: "Awadh Castle" },
   ],
 
   // Wedding venue with verified working Google Maps link
@@ -116,18 +116,13 @@ window.WEDDING_DATA = {
     whatsappQuery: "Hi Tripti & Durgesh, I will be attending your wedding celebrations!",
   },
 
-  photos: [
-    {
-      src: "./editable/assets/couple-photo.jpg",
-      caption: "Tripti & Durgesh",
-      subtitle: "Two hearts, one soul, starting our forever together",
-    },
-  ],
-
+  // The couple photo is shown once, in the circular hero frame on page 1.
+  // The standalone "Happy Couple" gallery section was removed at the
+  // customer's request, so no photo list is rendered anywhere else.
   sections: {
     events: true,
     venues: true,
-    photos: true,
+    photos: false,
     music: true,
     countdown: true,
     rsvp: true,
@@ -135,7 +130,6 @@ window.WEDDING_DATA = {
 
   images: {
     couple: "./editable/assets/couple-hero-circle.png",
-    coupleCutout: "./editable/assets/couple-cutout-full.png",
     background: "./editable/assets/layer-01-background.png",
     shadows: "./editable/assets/layer-02-shadows.png",
     groom: "./editable/assets/layer-03-groom.png",

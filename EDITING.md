@@ -42,6 +42,15 @@ Edit `events` and `program` arrays in `editable/wedding-data.js`:
 ### Section Visibility Toggles
 Edit `sections` in `editable/wedding-data.js`:
 - `events`, `venue`, `countdown`: Set boolean flags (`true` / `false`) to show or hide sections.
+- `photos`: `false` — the standalone couple-photo section was removed at the customer's
+  request. The couple photo appears once, in the circular hero frame on page 1
+  (`images.couple`).
+
+### Music
+`music` in `editable/wedding-data.js` drives the track (`audio`, `title`, `film`).
+The `<audio>` element uses the native `loop` attribute, so the song restarts gaplessly at
+the end of the track. Keep the audio file trimmed to the song itself — trailing silence
+would be audible in the loop.
 
 ### Layer Images & Parallax Assets
 Replace image files directly in `editable/assets/` or update `images`:
