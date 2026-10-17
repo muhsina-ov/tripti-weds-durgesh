@@ -103,7 +103,7 @@ window.WEDDING_DATA = {
     audio: "./editable/assets/music.mp3",
     title: "Navrai Majhi",
     film: "English Vinglish",
-    youtube: "https://youtu.be/hEHNef66HT0?si=Own9VAlh1cS3f_qE",
+    youtube: "https://youtu.be/hEHNef66HT0?si=FaMWiw4XJ0JXXB6k",
     autoplayOnOpen: true,
   },
 

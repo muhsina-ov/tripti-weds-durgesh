@@ -121,7 +121,7 @@ const ft = {
     audio: musicData.audio ?? "./editable/assets/music.mp3",
     title: musicData.title ?? "Navrai Majhi",
     film: musicData.film ?? "English Vinglish",
-    youtube: musicData.youtube ?? "https://youtu.be/hEHNef66HT0?si=Own9VAlh1cS3f_qE",
+    youtube: musicData.youtube ?? "https://youtu.be/hEHNef66HT0?si=FaMWiw4XJ0JXXB6k",
     autoplayOnOpen: musicData.autoplayOnOpen ?? !0
   },
   images: {
@@ -1534,7 +1534,13 @@ function ZM() {
         ref: audioRef,
         src: ft.music?.audio || "./editable/assets/music.mp3",
         loop: !0,
-        preload: "auto"
+        preload: "auto",
+        onEnded: () => {
+          if (audioRef.current) {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch(() => {});
+          }
+        }
       }),
       z.jsx(QM, {}),
       n === "open" && z.jsx(AM, { count: 18 }),

@@ -5,6 +5,8 @@ from PIL import Image
 
 def render_with_chrome():
     chrome_exe = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    if not os.path.exists(chrome_exe):
+        chrome_exe = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     cwd = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     
     # 1. Render 1200x630 card
